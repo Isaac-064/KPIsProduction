@@ -1,0 +1,7 @@
+{
+  "name": "KPIsProduction",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
