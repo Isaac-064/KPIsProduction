@@ -1,0 +1,56 @@
+<ion-item *ngIf="isLogin">
+  <ion-icon 
+  color="primary" 
+  slot="start" 
+  [name]="icon"
+  ></ion-icon>
+
+  <ion-input 
+  [type]="type"
+  [autocomplete]="autocomplete"
+  [label]="label"
+  [formControl]="control"
+  label-placement="floating"
+  ></ion-input>
+
+  <ion-button 
+  *ngIf="isPassword" 
+  (click)="showOrHidePassword()" 
+  slot="end" 
+  fill="clear" 
+  shape="round"
+  >
+    <ion-icon 
+    slot="icon-only" 
+    [name]="hide ? 'eye-outline' : 'eye-off-outline'"
+    ></ion-icon>
+  </ion-button>
+</ion-item>
+
+<ion-item *ngIf="isText">
+    <ion-icon 
+    color="primary" 
+    slot="start" 
+    [name]="icon"
+    ></ion-icon>
+  <ion-input 
+  [type]="type"
+  [label]="label"
+  [value]="value"
+  label-placement="floating"
+  ></ion-input>
+</ion-item>
+
+<ion-item *ngIf="isDate">
+  <ion-icon
+  color="primary" 
+  slot="start" 
+  [name]="icon" 
+  ></ion-icon>
+  <ion-datetime-button datetime="datetime"></ion-datetime-button>
+  <ion-modal [keepContentsMounted]="true">
+    <ng-template>
+      <ion-datetime id="datetime" presentation="date"></ion-datetime>
+    </ng-template>
+  </ion-modal>
+</ion-item>

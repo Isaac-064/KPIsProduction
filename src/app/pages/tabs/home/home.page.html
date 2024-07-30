@@ -1,0 +1,174 @@
+<app-header title="Home"></app-header>
+
+
+<ion-content>
+
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <app-custom-input
+          type="Date"
+          icon="calendar-outline"
+          ></app-custom-input>
+        </ion-col>
+
+        <ion-col>
+          <app-custom-select
+          type="turno"
+          icon="time-outline"
+          label="Turno"
+          change="handleChange($event)"
+          ></app-custom-select>
+        </ion-col>
+
+        <ion-col>
+          <app-custom-select
+          type="planta"
+          icon="business-outline"
+          label="Planta"
+          ></app-custom-select>
+        </ion-col>
+
+        <ion-col>
+          <app-custom-select
+          type="linea"
+          icon="business-outline"
+          label="Linea"
+          ></app-custom-select>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <app-custom-input
+          type="Text"
+          label="Tiempo"
+          icon="timer-outline"
+          value={{time}}
+          ></app-custom-input>
+        </ion-col>
+
+        <ion-col>
+          <app-custom-input
+          type="Text"
+          label="Piezas Buenas"
+          icon="checkmark-circle-outline"
+          ></app-custom-input>
+        </ion-col>
+          
+        <ion-col>
+          <app-custom-input
+          type="Text"
+          label="Piezas Scrap"
+          icon="close-circle-outline"
+          ></app-custom-input>
+        </ion-col>
+        
+        <ion-col>
+          <app-custom-input
+          type="Text"
+          label="Cabezas"
+          icon="body-outline"
+          ></app-custom-input>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Resultados</ion-card-title>
+    </ion-card-header>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-card >
+            <ion-card-header>
+              <ion-card-title>SCRAP</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <circle-progress
+                [percent]="0"
+                [radius]="100"
+                [outerStrokeWidth]="16"
+                [innerStrokeWidth]="8"
+                [outerStrokeColor]="'#FF0000'"
+                [innerStrokeColor]="'#FA8072'"
+                [animation]="true"
+                [animationDuration]="300"
+              ></circle-progress>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>LABOR LOSS</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <circle-progress
+                [percent]="85"
+                [radius]="100"
+                [outerStrokeWidth]="16"
+                [innerStrokeWidth]="8"
+                [outerStrokeColor]="'#FF0000'"
+                [innerStrokeColor]="'#FA8072'"
+                [animation]="true"
+                [animationDuration]="300"
+              ></circle-progress>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>OEE</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <circle-progress
+                [percent]="85"
+                [radius]="100"
+                [outerStrokeWidth]="16"
+                [innerStrokeWidth]="8"
+                [outerStrokeColor]="'#78C000'"
+                [innerStrokeColor]="'#C7E596'"
+                [animation]="true"
+                [animationDuration]="300"
+              ></circle-progress>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        
+        <ion-col>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>PVS VOLUMEN</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <circle-progress
+              [percent]="85"
+              [radius]="100"
+              [outerStrokeWidth]="16"
+              [innerStrokeWidth]="8"
+              [outerStrokeColor]="'#78C000'"
+              [innerStrokeColor]="'#C7E596'"
+              [animation]="true"
+              [animationDuration]="300"
+            ></circle-progress>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+</ion-content>

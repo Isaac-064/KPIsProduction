@@ -1,0 +1,47 @@
+<ion-list mode="ios">
+  <ion-item *ngIf="type === 'turno'">
+    <ion-icon
+    color="primary" 
+    slot="start" 
+    [name]="icon"
+    ></ion-icon>
+    <ion-select
+    [label]="label"
+    label-placement="floating"
+    (ionChange)="handleChange($event)"
+    (ionCancel)="handleCancel()"
+    (ionDismiss)="handleDismiss()">
+    
+    <ion-select-option *ngFor="let turno of turnos" [value]="turno">{{ turno.name }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  
+  <ion-item *ngIf="type === 'planta'">
+    <ion-icon
+    color="primary" 
+    slot="start" 
+    [name]="icon"
+    ></ion-icon>
+    <ion-select
+    [label]="label"
+    label-placement="floating">
+   
+    <ion-select-option *ngFor="let planta of plantas" [value]="planta">{{ planta.name }}</ion-select-option>    
+    </ion-select>
+  </ion-item>
+
+  <ion-item *ngIf="type === 'linea'">
+    <ion-icon
+    color="primary" 
+    slot="start" 
+    [name]="icon"
+    ></ion-icon>
+    <ion-select
+    [label]="label"
+    label-placement="floating">
+   
+    <ion-select-option *ngFor="let linea of lineas" [value]="linea">{{ linea.name }}</ion-select-option>    
+    </ion-select>
+  </ion-item>
+
+</ion-list>
