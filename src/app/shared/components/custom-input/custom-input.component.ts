@@ -14,8 +14,7 @@ export class CustomInputComponent  implements OnInit {
   @Input() autocomplete!: string;
   @Input() icon!: string;
   @Input() value!: string;
-
-
+  
   isPassword: boolean = false;
   isLogin: boolean = false;
   isText: boolean = false;
@@ -25,13 +24,31 @@ export class CustomInputComponent  implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    if( this.type == 'password') {
-      this.isPassword = true; 
-      this.isLogin = true;
+    switch (this.type) {
+      case 'password':
+        this.isPassword = true; 
+        this.isLogin = true;
+        break;
+
+      case 'Login':
+        this.isLogin = true;
+        break;
+
+      case 'Date':
+        this.isDate = true;
+        break;
+
+      case 'Text':
+        this.isText = true;
+        break;
+  
+      default:
+        this.isPassword = false;
+        this.isLogin = false;
+        this.isDate = false;
+        this.isText = false;
+        break;
     }
-    if( this.type == 'Login') this.isLogin = true;
-    if( this.type == 'Date') this.isDate = true;
-    if( this.type == 'Text') this.isText = true;
   }
 
   showOrHidePassword() {

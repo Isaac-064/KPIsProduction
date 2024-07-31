@@ -15,6 +15,7 @@
 
         <ion-col>
           <app-custom-select
+          [control]="form.controls.turno"
           type="turno"
           icon="time-outline"
           label="Turno"
@@ -24,18 +25,22 @@
 
         <ion-col>
           <app-custom-select
+          [control]="form.controls.planta"
           type="planta"
           icon="business-outline"
           label="Planta"
           ></app-custom-select>
         </ion-col>
-
         <ion-col>
-          <app-custom-select
-          type="linea"
-          icon="business-outline"
-          label="Linea"
-          ></app-custom-select>
+          <app-custom-input
+          [control]="form.controls.tiempo"
+          type="Text"
+          label="Tiempo (Hrs)" 
+          icon="timer-outline" 
+          ></app-custom-input>
+          <div class="validators" *ngIf="form.controls.tiempo.errors && form.controls.tiempo.dirty">
+            <div *ngIf="form.controls.tiempo.errors?.['required']">Este campo es requerido</div>
+          </div>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -44,42 +49,99 @@
   <ion-card>
     <ion-grid>
       <ion-row>
-        <ion-col>
-          <app-custom-input
-          type="Text"
-          label="Tiempo"
-          icon="timer-outline"
-          value={{time}}
-          ></app-custom-input>
-        </ion-col>
 
         <ion-col>
           <app-custom-input
+          [control]="form.controls.piezaBuena"
           type="Text"
           label="Piezas Buenas"
           icon="checkmark-circle-outline"
           ></app-custom-input>
+          <div class="validators" *ngIf="form.controls.piezaBuena.errors && form.controls.piezaBuena.dirty">
+            <div *ngIf="form.controls.piezaBuena.errors?.['required']">Este campo es requerido</div>
+          </div>
         </ion-col>
           
         <ion-col>
           <app-custom-input
+          [control]="form.controls.piezaPlan"
+          type="Text"
+          label="Piezas Planeadas"
+          icon="checkbox-outline"
+          ></app-custom-input>
+          <div class="validators" *ngIf="form.controls.piezaPlan.errors && form.controls.piezaPlan.dirty">
+            <div *ngIf="form.controls.piezaPlan.errors?.['required']">Este campo es requerido</div>
+          </div>
+        </ion-col>
+
+        <ion-col>
+          <app-custom-input
+          [control]="form.controls.piezaScrap"
           type="Text"
           label="Piezas Scrap"
           icon="close-circle-outline"
           ></app-custom-input>
+          <div class="validators" *ngIf="form.controls.piezaScrap.errors && form.controls.piezaScrap.dirty">
+            <div *ngIf="form.controls.piezaScrap.errors?.['required']">Este campo es requerido</div>
+          </div>
         </ion-col>
         
         <ion-col>
           <app-custom-input
+          [control]="form.controls.cabezas"
           type="Text"
           label="Cabezas"
           icon="body-outline"
           ></app-custom-input>
+          <div class="validators" *ngIf="form.controls.cabezas.errors && form.controls.cabezas.dirty">
+            <div *ngIf="form.controls.cabezas.errors?.['required']">Este campo es requerido</div>
+          </div>
         </ion-col>
+
+        <ion-col>
+          <app-custom-input
+          [control]="form.controls.tiempoMuerto"
+          type="Text"
+          label="Tiempo Muerto"
+          icon="hourglass-outline"
+          ></app-custom-input>
+          <div class="validators" *ngIf="form.controls.tiempoMuerto.errors && form.controls.tiempoMuerto.dirty">
+            <div *ngIf="form.controls.tiempoMuerto.errors?.['required']">Este campo es requerido</div>
+          </div>
+        </ion-col>
+
+        <ion-col>
+          <app-custom-input
+          [control]="form.controls.TCTeorico"
+          type="Text"
+          label="T. Ciclo Teorico"
+          icon="alarm-outline"
+          ></app-custom-input>
+          <div class="validators" *ngIf="form.controls.tiempoMuerto.errors && form.controls.tiempoMuerto.dirty">
+            <div *ngIf="form.controls.tiempoMuerto.errors?.['required']">Este campo es requerido</div>
+          </div>
+        </ion-col>
+        
+        <ion-col>
+          <app-custom-input
+          [control]="form.controls.HCTeorico"
+          type="Text"
+          label="HeadCount Teorico"
+          icon="people-outline"
+          ></app-custom-input>
+          <div class="validators" *ngIf="form.controls.tiempoMuerto.errors && form.controls.tiempoMuerto.dirty">
+            <div *ngIf="form.controls.tiempoMuerto.errors?.['required']">Este campo es requerido</div>
+          </div>
+        </ion-col>
+
       </ion-row>
     </ion-grid>
   </ion-card>
 
+  <ion-button expand="block" shape="round"  [disabled]="form.invalid" (click)="submit()">
+    calcular
+    <ion-icon slot="end" name="calculator-outline"></ion-icon>
+  </ion-button>
 
   <ion-card>
     <ion-card-header>
@@ -95,8 +157,9 @@
             </ion-card-header>
             <ion-card-content>
               <circle-progress
-                [percent]="0"
+                [percent]=scrap
                 [radius]="100"
+                [toFixed]="2"
                 [outerStrokeWidth]="16"
                 [innerStrokeWidth]="8"
                 [outerStrokeColor]="'#FF0000'"
@@ -115,8 +178,9 @@
             </ion-card-header>
             <ion-card-content>
               <circle-progress
-                [percent]="85"
+                [percent]=laborloss
                 [radius]="100"
+                [toFixed]="2"
                 [outerStrokeWidth]="16"
                 [innerStrokeWidth]="8"
                 [outerStrokeColor]="'#FF0000'"
@@ -135,8 +199,9 @@
             </ion-card-header>
             <ion-card-content>
               <circle-progress
-                [percent]="85"
+                [percent]=oee
                 [radius]="100"
+                [toFixed]="2"
                 [outerStrokeWidth]="16"
                 [innerStrokeWidth]="8"
                 [outerStrokeColor]="'#78C000'"
@@ -155,8 +220,9 @@
             </ion-card-header>
             <ion-card-content>
               <circle-progress
-              [percent]="85"
+              [percent]=pvs
               [radius]="100"
+              [toFixed]="2"
               [outerStrokeWidth]="16"
               [innerStrokeWidth]="8"
               [outerStrokeColor]="'#78C000'"

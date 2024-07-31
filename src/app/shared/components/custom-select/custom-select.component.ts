@@ -1,5 +1,6 @@
 /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-custom-select',
@@ -8,6 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CustomSelectComponent  implements OnInit {
 
+  @Input() control!: FormControl;
   @Input() icon!: string;
   @Input() label!: string;
   @Input() type!: string;
@@ -42,21 +44,6 @@ export class CustomSelectComponent  implements OnInit {
     // },
   ];
 
-  lineas = [
-    {
-      id: 1,
-      name: 'Linea 1',
-    },
-    {
-      id: 2,
-      name: 'Linea 2',
-    },
-    {
-      id: 3,
-      name: 'Linea 3',
-    },
-  ];
-
   constructor() { }
 
   ngOnInit() {}
@@ -64,7 +51,6 @@ export class CustomSelectComponent  implements OnInit {
   
   handleChange(e: { detail: { value: string; }; }) {
     this.selecion = Object.values(e.detail.value)
-    console.log(this.selecion[1]);
     switch (this.selecion[1]) {
       case "1er Turno":
         this.time = 8.67
@@ -76,16 +62,7 @@ export class CustomSelectComponent  implements OnInit {
         this.time = 5.17
         break;
     }
-    console.log(this.time);
     localStorage.setItem('time', this.time.toString())
-  }
-
-  handleCancel() {
-    console.log('ionCancel fired');
-  }
-
-  handleDismiss() {
-    console.log('ionDismiss fired');
   }
 
 }
