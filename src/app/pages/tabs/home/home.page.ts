@@ -117,4 +117,21 @@ export class HomePage implements OnInit {
       this.pvs = FormulaPVS;
     }
   }
+
+  get outerStrokeColorScrap(): string {
+    return this.scrap < 1 ? '#00FF00' : '#FF0000';
+  }
+
+  get outerStrokeColorLaborLoss(): string {
+    return this.laborloss < 25 ? '#00FF00' : '#FF0000';
+  }
+  
+  get outerStrokeColorOEE(): string {
+    return this.oee > 85 ? '#00FF00' : '#FF0000';
+  }
+  
+  get outerStrokeColorPVS(): string {
+    return this.pvs > 90 ? '#00FF00' : '#FF0000';
+  }
+
 }

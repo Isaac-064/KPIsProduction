@@ -31,6 +31,10 @@ export class CustomSelectComponent  implements OnInit {
       id: 3,
       name: '3er Turno',
     },
+    {
+      id: 4,
+      name: 'Diario',
+    },
   ];
 
   plantas = [
